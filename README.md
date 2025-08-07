@@ -66,7 +66,7 @@ mongodb://127.0.0.1:27017
 ### 4. Run the app
 
 ```bash
-uvicorn app:app --reload
+python app.py
 ```
 
 Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
