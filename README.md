@@ -40,7 +40,7 @@ This is a web-based Hangman game built using **FastAPI**, **Jinja2 templates**, 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourname/hangman-app.git
+git clone repoURL
 cd hangman-app
 ```
 
