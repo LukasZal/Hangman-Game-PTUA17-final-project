@@ -31,7 +31,6 @@ This is a web-based Hangman game built using **FastAPI**, **Jinja2 templates**, 
 │   └── game.html
 ├── requirements.txt       # Dependencies
 ├── unit_tests.py      	   # Unit Tests
-└── README.md              # You're here
 ```
 
 ---
@@ -48,8 +47,8 @@ cd hangman-app
 ### 2. Install dependencies
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # or .\venv\Scripts\activate on Windows
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -71,19 +70,6 @@ python app.py
 
 Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
----
-
-## ✅ Requirements
-
-- Python 3.10+
-- FastAPI
-- Uvicorn
-- Jinja2
-- Motor (async MongoDB)
-- Bcrypt
-- Bootstrap 5.1.3 (via CDN)
-
----
 
 ## 👤 Author
 
