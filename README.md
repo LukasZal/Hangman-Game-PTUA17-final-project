@@ -29,7 +29,7 @@ This is a web-based Hangman game built using **FastAPI**, **Jinja2 templates**, 
 │   ├── register.html
 │   ├── success.html
 │   └── game.html
-├── requirements.txt       # Pdependencies
+├── requirements.txt       # Dependencies
 ├── unit_tests.py      	   # Unit Tests
 └── README.md              # You're here
 ```
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 Make sure MongoDB is running and accessible at:
 
 ```
-mongodb://10.48.7.100:27017
+mongodb://127.0.0.1:27017
 ```
 
 > You can change this address in `app.py` if needed.
