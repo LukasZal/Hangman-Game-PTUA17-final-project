@@ -21,7 +21,6 @@ Project is dockerized with option to reload files and easily access log files
 ## 📁 Project Structure
 
 ```
-.
 ├── app/
 │	├── hangman.py             # Game logic (HangmanGame, GameStats, RoundSta
 │	├── app.py                 # Main FastAPI app with routes
