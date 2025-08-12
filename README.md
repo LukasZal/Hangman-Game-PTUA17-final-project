@@ -1,7 +1,7 @@
 # 🎮 Hangman Game (PTUA17 Final Project)
 
 This is a web-based Hangman game built using **FastAPI**, **Jinja2 templates**, and **MongoDB**. It supports user registration, login, session management, round/game statistics, and visual hangman display.
-Project is dockerized with option to reload files and easily access log files
+Project is dockerized with option to reload files and easily access log files.
 
 ---
 
@@ -65,3 +65,5 @@ docker ps -a
 ```
 
 ### 4. Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+![Alt text](login-page.png)
