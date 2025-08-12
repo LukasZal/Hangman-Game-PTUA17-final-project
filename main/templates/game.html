@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hangman Game</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+    }
+    .card {
+      background-color: #111;
+      border: none;
+      border-radius: 10px;
+    }
+    .hangman {
+      white-space: pre;
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .word-display {
+      letter-spacing: 0.35em;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .word-label {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .stats-pre {
+      white-space: pre-line;
+      color: #ccc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4 text-center display-6 fw-bold text-warning" style="text-shadow: 2px 2px 5px #000; font-size: 2rem;">
+      Hangman Game
+    </h1>
+    <p class="text-center">Welcome, {{ name }}.</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="hangman">{{ visual }}</div>
+        <div class="word-label">Word:</div>
+        <div class="word-display">{{ ' '.join(word_completion) }}</div>
+        <p>Tries left: {{ tries }}</p>
+        {% if guessed_letters != 'None' %}
+          <p>Guessed letters: {{ guessed_letters }}</p>
+        {% endif %}
+
+        {% if not play_again %}
+        <form method="POST" action="/guess">
+          <div class="mb-3">
+            <input
+              type="text"
+              name="guess"
+              maxlength="20"
+              required
+              class="form-control"
+              placeholder="Enter a letter or word"
+              autofocus
+            />
+          </div>
+          <button type="submit" class="btn btn-success">Guess</button>
+        </form>
+        {% endif %}
+
+        {% if game_over_message %}
+          {% set msg_lower = game_over_message|lower %}
+          {% if 'good job' in msg_lower or 'you won' in msg_lower %}
+            <div class="alert alert-success mt-4">{{ game_over_message }}</div>
+          {% elif 'game over' in msg_lower or 'you lost' in msg_lower or 'you failed' in msg_lower %}
+            <div class="alert alert-danger mt-4">{{ game_over_message }}</div>
+          {% else %}
+            <div class="alert alert-info mt-4">{{ game_over_message }}</div>
+          {% endif %}
+        {% endif %}
+
+        {% if play_again %}
+        <form method="POST" action="/play-again">
+          <button type="submit" class="btn btn-warning mt-2">Play Again</button>
+        </form>
+        {% endif %}
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3 mb-3">
+          <h5>Message:</h5>
+          {% if messages and messages|length > 0 %}
+            {% set last_msg = messages[-1] %}
+            {% set msg_lower = last_msg|lower %}
+            {% if 'good job' in msg_lower or 'you won' in msg_lower %}
+              <div class="alert alert-success p-2">{{ last_msg }}</div>
+            {% elif 'game over' in msg_lower or 'you lost' in msg_lower or 'you failed' in msg_lower %}
+              <div class="alert alert-danger p-2">{{ last_msg }}</div>
+            {% elif 'correct' in msg_lower %}
+              <div class="alert alert-success p-2">{{ last_msg }}</div>
+            {% elif 'not' in msg_lower or 'wrong' in msg_lower %}
+              <div class="alert alert-danger p-2">{{ last_msg }}</div>
+            {% elif 'already guessed' in msg_lower or 'invalid input' in msg_lower %}
+              <div class="alert alert-warning p-2">{{ last_msg }}</div>
+            {% else %}
+              <div class="alert alert-info p-2">{{ last_msg }}</div>
+            {% endif %}
+          {% else %}
+            <p>Let's play!</p>
+          {% endif %}
+        </div>
+
+        <div class="card p-3 mb-3">
+          <h5>Round Stats:</h5>
+          <pre class="stats-pre">{{ round_stats }}</pre>
+        </div>
+
+        <div class="card p-3 mb-4">
+          <h5>Game Stats:</h5>
+          <pre class="stats-pre">{{ game_stats }}</pre>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <form method="POST" action="/play-again" class="me-2">
+            <button type="submit" class="btn btn-warning btn-sm">Restart</button>
+          </form>
+          <form method="POST" action="/exit">
+            <button type="submit" class="btn btn-danger btn-sm">Exit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer>Created by Lukas | CodeAcademy | 2025</footer>
+  </div>
+</body>
+</html>

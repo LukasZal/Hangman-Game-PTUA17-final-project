@@ -12,7 +12,7 @@ import random
 import bcrypt
 
 
-client = MongoClient("mongodb://10.48.7.100:27017")
+client = MongoClient("mongodb://mongo-db:27017")
 database = client["HangmanDB"]
 users = database["users"]
 words = database["words"]
@@ -159,6 +159,3 @@ def exit_game(request: Request):
         stats.pop(email, None)
     request.session.clear()
     return RedirectResponse("/", status_code=302)
-
-if __name__ == "__main__":
-    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)

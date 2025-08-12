@@ -1,0 +1,30 @@
+---
+services:
+  hangman-app:
+    build: .
+    image: hangman:PTUA17
+    working_dir: /app/hangman          # Optional for reload live code
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "80:8000"
+    container_name: hangman
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    volumes:
+      - ./logs/:/app/hangman/logs        # Optional for accessing logs
+      - ./main/:/app/hangman             # Optional for reload live code
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-db-data:/data/db
+      - mongo-config:/data/configdb
+
+volumes:
+  mongo-db-data:
+  mongo-config:
