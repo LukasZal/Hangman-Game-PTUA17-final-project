@@ -64,6 +64,6 @@ Make sure hangman and mongo-db is running
 docker ps -a
 ```
 
-### 4. Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+### 4. Visit: [http://127.0.0.1](http://127.0.0.1)
 
 ![Alt text](login-page.png)
