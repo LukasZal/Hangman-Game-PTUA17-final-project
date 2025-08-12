@@ -46,12 +46,14 @@ Project is dockerized with option to reload files and easily access log files
 
 ### 1. Clone the repo
 
-```git clone git@github.com:LukasZal/Hangman-Game-PTUA17-final-project.git
+```
+git clone git@github.com:LukasZal/Hangman-Game-PTUA17-final-project.git
 ```
 
 ### 2. Build and start with Docker Compose
 
-```cd Hangman-Game-PTUA17-final-project
+```
+cd Hangman-Game-PTUA17-final-project
 docker compose up --build -d
 ```
 
